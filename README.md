@@ -52,6 +52,7 @@ In addition to other things, Typescript helped ensure type safety for the status
 
 I implemented Tailwind mostly because I wanted to learn how to use Tailwind CSS, but I also took advantage of [Tailwind UI](https://tailwindui.com/) with their [headless package](https://headlessui.dev/) to build the modals and notifications. This was such an easy way to build simple popups for how to play, winning the game, and invalid words.
 
+
 _To Run Locally:_
 Clone the repository and perform the following command line actions:
 ```bash
