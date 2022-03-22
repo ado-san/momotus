@@ -1,15 +1,15 @@
 import { CONFIG } from './config'
 
 export const VALIDGUESSES = [
-  'Bongos̱',
+  'Bongos',
   'Cither',
-  'Corneṯ',
-  'Crotaḻ',
+  'Cornet',
+  'Crotal',
   'Cymbal',
   'Djembe',
   'Fiddle',
   'Guitar',
-  'Maraca̱',
+  'Maraca',
   'Spoons',
   'Tabour',
   'tamtam',

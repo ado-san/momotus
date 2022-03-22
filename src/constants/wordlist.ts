@@ -1,15 +1,15 @@
 import { CONFIG } from './config'
 
 export const WORDS = [
-  'Bongos̱',
+  'Bongos',
   'Cither',
-  'Corneṯ',
+  'Cornet',
   'Crotaḻ',
   'Cymbal',
   'Djembe',
   'Fiddle',
   'Guitar',
-  'Maraca̱',
+  'Maraca',
   'Spoons',
   'Tabour',
   'tamtam',
