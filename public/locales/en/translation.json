@@ -7,27 +7,33 @@
     "wordNotFound": "A pas compris",
     "solution": "Nul ! Le mot était : {{solution}}",
     "gameCopied": "Controle toi même tu sais",
-    "howToPlay": "Wordle pour les nuls",
-    "instructions": "Guess the word in {{tries}} tries. After each guess, the color of the tiles will change to show how close your guess was to the word.",
+    "howToPlay": "Le guide pour pour les nuls",
+    "instructions": "Devine le mot en {{tries}} essaies. Apres chaque essaie, la couleur de la lettre va changer pour montrer si vous etes chaud ou froid. Comme entre la sangria et le vin chaud.",
     "pickYourLanguage": "Choose a language",
-    "correctSpotInstructions": "The letter W is in the word and in the correct spot.",
-    "wrongSpotInstructions": "The letter L is in the word but in the wrong spot.",
-    "notInWordInstructions": "The letter U is not in the word in any spot.",
-    "guessDistribution": "Guess Distribution",
-    "statistics": "Statistics",
-    "totalTries": "Total tries",
-    "successRate": "Success rate",
+    "correctSpotInstructions": "La lettre X est dans le mot mais c'est pas sex.",
+    "wrongSpotInstructions": "La lettre Q n'est pas au bon endroit.",
+    "notInWordInstructions": "La lettre U ne doit pas etre bue.",
+    "guessDistribution": "Distribution des essaies",
+    "statistics": "Statistiques",
+    "totalTries": "Nombre de parties",
+    "successRate": "Taux de succes",
     "currentStreak": "Current streak",
-    "bestStreak": "Best streak",
-    "newWordCountdown": "New word in",
-    "share": "Share",
+    "bestStreak": "Meilleur ",
+    "newWordCountdown": "Prochain mot dans",
+    "share": "Partage",
     "winMessages": [
-        "Great Job!",
-        "Awesome",
-        "Well done!"
+        "Chapo l'artiste !"
     ],
     "firstExampleWord": [{
-            "letter": "W",
+            "letter": "S",
+            "highlight": false
+        },
+        {
+            "letter": "E",
+            "highlight": false
+        },
+        {
+            "letter": "X",
             "highlight": true
         },
         {
@@ -35,20 +41,12 @@
             "highlight": false
         },
         {
-            "letter": "A",
-            "highlight": false
-        },
-        {
-            "letter": "R",
-            "highlight": false
-        },
-        {
-            "letter": "Y",
+            "letter": "S",
             "highlight": false
         }
     ],
     "secondExampleWord": [{
-            "letter": "P",
+            "letter": "N",
             "highlight": false
         },
         {
@@ -56,24 +54,24 @@
             "highlight": false
         },
         {
-            "letter": "L",
+            "letter": "Q",
             "highlight": true
         },
         {
-            "letter": "O",
+            "letter": "U",
             "highlight": false
         },
         {
-            "letter": "T",
+            "letter": "E",
             "highlight": false
         }
     ],
     "thirdExampleWord": [{
-            "letter": "V",
+            "letter": "F",
             "highlight": false
         },
         {
-            "letter": "A",
+            "letter": "I",
             "highlight": false
         },
         {
