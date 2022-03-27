@@ -1,6 +1,6 @@
 export const CONFIG = {
   tries: 6, // This changes how many tries you get to finish the wordle
-  language: 'Fanfrançais', // This changes the display name for your language
+  language: 'Fanfrench', // This changes the display name for your language
   wordLength: 6, // This sets how long each word is based on how many characters (as defined in orthography.ts) are in each word
   author: 'Adrien', // Put your name here so people know who made this Wordle!
   authorWebsite: 'electrogene.club', // Put a link to your website or social media here
