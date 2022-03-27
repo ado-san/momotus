@@ -1,7 +1,7 @@
 {
-    "name": "SuTomTom",
+    "name": "MoMoTus",
     "version": "0.1.0",
-    "homepage": "https://ado-san.github.io/sutomtom",
+    "homepage": "https://ado-san.github.io/momotus",
     "private": true,
     "dependencies": {
         "@bcgov/bc-sans": "^1.0.1",
