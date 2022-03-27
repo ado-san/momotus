@@ -1,11 +1,11 @@
 export const CONFIG = {
   tries: 6, // This changes how many tries you get to finish the wordle
-  language: 'Fanfrenglish', // This changes the display name for your language
+  language: 'Fanfrançais', // This changes the display name for your language
   wordLength: 6, // This sets how long each word is based on how many characters (as defined in orthography.ts) are in each word
   author: 'Adrien', // Put your name here so people know who made this Wordle!
   authorWebsite: 'electrogene.club', // Put a link to your website or social media here
   wordListSource: 'sense99 / aftermath', // Describe the source material for your words here
-  wordListSourceLink: 'buy me a beer', // Put a link to the source material for your words here
+  wordListSourceLink: 'un pastis sinon rien', // Put a link to the source material for your words here
   //
   // THESE NEXT SETTINGS ARE FOR ADVANCED USERS
   //
