@@ -11,8 +11,8 @@
     "instructions": "Devine le mot en {{tries}} essaies. Apres chaque essaie, la couleur de la lettre va changer pour montrer si vous etes chaud ou froid. Comme entre la sangria et le vin chaud.",
     "pickYourLanguage": "Choose a language",
     "correctSpotInstructions": "La lettre X est dans le mot mais c'est pas sex.",
-    "wrongSpotInstructions": "La lettre Q n'est pas au bon endroit.",
-    "notInWordInstructions": "La lettre U ne doit pas etre bue.",
+    "wrongSpotInstructions": "69 ! La lettre Q n'est pas au bon endroit.",
+    "notInWordInstructions": "La lettre K ne doit pas etre bue.",
     "guessDistribution": "Distribution des essaies",
     "statistics": "Statistiques",
     "totalTries": "Nombre de parties",
@@ -67,23 +67,23 @@
         }
     ],
     "thirdExampleWord": [{
-            "letter": "F",
+            "letter": "V",
             "highlight": false
         },
         {
-            "letter": "I",
+            "letter": "O",
             "highlight": false
         },
         {
-            "letter": "G",
+            "letter": "D",
             "highlight": false
         },
         {
-            "letter": "U",
+            "letter": "K",
             "highlight": true
         },
         {
-            "letter": "E",
+            "letter": "A",
             "highlight": false
         }
     ],
