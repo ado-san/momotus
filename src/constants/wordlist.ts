@@ -45,6 +45,7 @@ export const WORDS = [
   'phrase',
   'accord',
   'erwann',
+  'france',
   'volume',
   'gypsie',
   'presto',
