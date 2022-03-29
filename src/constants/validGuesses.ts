@@ -45,6 +45,7 @@ export const VALIDGUESSES = [
   'phrase',
   'accord',
   'erwann',
+  'france',
   'volume',
   'gypsie',
   'presto',
