@@ -1,7 +1,7 @@
 import { InformationCircleIcon } from '@heroicons/react/outline'
 import { ChartBarIcon } from '@heroicons/react/outline'
 import { TranslateIcon } from '@heroicons/react/outline'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Alert } from './components/alerts/Alert'
 import { Grid } from './components/grid/Grid'
 import { Keyboard } from './components/keyboard/Keyboard'
@@ -35,6 +35,7 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
   const [isWordNotFoundAlertOpen, setIsWordNotFoundAlertOpen] = useState(false)
   const [isGameLost, setIsGameLost] = useState(false)
   const [successAlert, setSuccessAlert] = useState('')
+
   const [guesses, setGuesses] = useState<string[][]>(() => {
     const loaded = loadGameStateFromLocalStorage()
     if (loaded?.solution !== solution) {
@@ -43,14 +44,12 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
     const gameWasWon = loaded.guesses
       .map((guess) => guess.join(''))
       .includes(solution)
-    if (gameWasWon) {
-      setIsGameWon(true)
-    }
-    if (loaded.guesses.length === CONFIG.tries && !gameWasWon) {
+    if (gameWasWon) setIsGameWon(true)
+    if (loaded.guesses.length === CONFIG.tries && !gameWasWon)
       setIsGameLost(true)
-    }
     return loaded.guesses
   })
+
   const WIN_MESSAGES = t('winMessages', { returnObjects: true })
   const TRACKING_ID = CONFIG.googleAnalytics
 
@@ -58,26 +57,50 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
     ReactGA.initialize(TRACKING_ID)
     ReactGA.pageview(window.location.pathname)
   }
+
   const [stats, setStats] = useState(() => loadStats())
+  const statsModalTimeout = useRef<number | null>(null)
+  const hasOpenedStatsModal = useRef(false)
 
   useEffect(() => {
     saveGameStateToLocalStorage({ guesses, solution })
   }, [guesses])
 
+  // 🧠 Handle modal opening logic with anti-flicker
   useEffect(() => {
+    if (statsModalTimeout.current) {
+      clearTimeout(statsModalTimeout.current)
+      statsModalTimeout.current = null
+    }
+
+    // Prevent re-opening if it already appeared once
+    if (hasOpenedStatsModal.current) return
+
     if (isGameWon) {
       setSuccessAlert(
         WIN_MESSAGES[Math.floor(Math.random() * WIN_MESSAGES.length)]
       )
-      setTimeout(() => {
+      statsModalTimeout.current = window.setTimeout(() => {
         setSuccessAlert('')
         setIsStatsModalOpen(true)
+        hasOpenedStatsModal.current = true
+        statsModalTimeout.current = null
       }, ALERT_TIME_MS)
     }
+
     if (isGameLost) {
-      setTimeout(() => {
+      statsModalTimeout.current = window.setTimeout(() => {
         setIsStatsModalOpen(true)
+        hasOpenedStatsModal.current = true
+        statsModalTimeout.current = null
       }, ALERT_TIME_MS)
+    }
+
+    return () => {
+      if (statsModalTimeout.current) {
+        clearTimeout(statsModalTimeout.current)
+        statsModalTimeout.current = null
+      }
     }
   }, [isGameWon, isGameLost, WIN_MESSAGES])
 
@@ -92,27 +115,21 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
     }
   }
 
-  const onDelete = () => {
-    setCurrentGuess(currentGuess.slice(0, -1))
-  }
+  const onDelete = () => setCurrentGuess(currentGuess.slice(0, -1))
 
   const onEnter = () => {
-    if (isGameWon || isGameLost) {
-      return
-    }
+    if (isGameWon || isGameLost) return
+
     if (!(currentGuess.length === CONFIG.wordLength)) {
       setIsNotEnoughLetters(true)
-      return setTimeout(() => {
-        setIsNotEnoughLetters(false)
-      }, ALERT_TIME_MS)
+      return setTimeout(() => setIsNotEnoughLetters(false), ALERT_TIME_MS)
     }
 
     if (!isWordInWordList(currentGuess.join(''))) {
       setIsWordNotFoundAlertOpen(true)
-      return setTimeout(() => {
-        setIsWordNotFoundAlertOpen(false)
-      }, ALERT_TIME_MS)
+      return setTimeout(() => setIsWordNotFoundAlertOpen(false), ALERT_TIME_MS)
     }
+
     const winningWord = isWinningWord(currentGuess.join(''))
 
     if (
@@ -134,6 +151,7 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
       }
     }
   }
+
   let translateElement = <div></div>
   if (CONFIG.availableLangs.length > 1) {
     translateElement = (
@@ -160,13 +178,16 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
           onClick={() => setIsStatsModalOpen(true)}
         />
       </div>
+
       <Grid guesses={guesses} currentGuess={currentGuess} />
+
       <Keyboard
         onChar={onChar}
         onDelete={onDelete}
         onEnter={onEnter}
         guesses={guesses}
       />
+
       <TranslateModal
         isOpen={isI18nModalOpen}
         handleClose={() => setIsI18nModalOpen(false)}
@@ -177,7 +198,14 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
       />
       <StatsModal
         isOpen={isStatsModalOpen}
-        handleClose={() => setIsStatsModalOpen(false)}
+        handleClose={() => {
+          if (statsModalTimeout.current) {
+            clearTimeout(statsModalTimeout.current)
+            statsModalTimeout.current = null
+          }
+          hasOpenedStatsModal.current = true // prevents reopen flicker
+          setIsStatsModalOpen(false)
+        }}
         guesses={guesses}
         gameStats={stats}
         isGameLost={isGameLost}
